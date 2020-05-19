@@ -9,9 +9,8 @@
  - Quentin Leprat
  
  ## Contenu du livrable 
- 
-| Étape         |   D2 mar13h15   |   header 3 |
-| ------------- |: -------------: | ---------: |
-| 1 NDC - MCD   |        1        |      value |
-| Line 2        |        2        |      value |
-| 3 Online      |        3        |      value |
+
+| Étape | D2 Mar 13h15 |
+| ------ | ------ |
+| cell | cell |
+| cell | cell | 
