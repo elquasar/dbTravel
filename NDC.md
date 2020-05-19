@@ -5,6 +5,6 @@
 
 ## Liste des objets qui devront être gérés dans la BDD
 
-* Ressources humaines : client, accompagnateur
-* Circuit touristiques : étapes, activité,transport, hébergement, équipements
-* Factures
+* **Ressources humaines** : client, accompagnateur
+* **Circuit touristiques** : étapes, activité,transport, hébergement, équipements
+* **Factures**
