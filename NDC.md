@@ -1,7 +1,7 @@
 # Note de clarification - Gestion d'une agence touristique
 
 * Client : Alessandro Victorino
-* Objectif : mettre en place une base de donnée et un système de gestion de ses voyages
+* Objectif : mettre en place une base de donnée et un système de gestion de voyage pour une agence touristique
 
 ## Liste des objets qui devront être gérés dans la BDD
 
