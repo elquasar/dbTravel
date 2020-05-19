@@ -23,7 +23,7 @@ Une ressource humaine peut-être :
 
 ### Circuit touristique
 
-Un circuit touristique possède un type, une date de départ, une durée, un nombre maximun de participants et un niveau de difficulté.
+Un circuit touristique possède un type, une date de départ, une durée, un nombre maximun de participants, un prix qui dépend de la période donnée et un niveau de difficulté.
 
 Un client peut laisser un commentaire et/ou une note sur un circuit via une **Notation**.
 
@@ -35,4 +35,4 @@ Un circuit touristique est composé de plusieurs **étapes**.
 
 ### Étape
 
-Une étape possède une activité, un lieu d'hébergement ainsi qu'un moyen de transport et peut nécessiter 
+Une étape possède une activité, un lieu d'hébergement ainsi qu'un moyen de transport et peut nécessiter la location d'équipements.
