@@ -76,5 +76,5 @@ réservé, partiellement ou totalement payé.
 ### Contraintes sur la réservation
 
 * Une réservation est automatiquement fermée si : 
-    * le statut n'est pas payé 15 jours avant le début du circuit.
-* Un client ne peut pas 
+    * le montant n'est pas payé 15 jours avant le début du circuit, dans ce cas là, la réservation est annulée.
+    * le paiement à été effectué dans ce cas là, la réservation passe au statut réservé
