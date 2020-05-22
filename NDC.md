@@ -10,7 +10,7 @@
 * **Factures**
 * **Notation**
 
-## Liste propriétés associées à chaque objet
+## Liste des propriétés associées à chaque objet
 
 ### Ressource humaine
 
@@ -19,6 +19,7 @@ Une ressource humaine possède un **NSS** (**N**uméro de **S**écurité **S**oc
 Une ressource humaine peut-être : 
 
 * Un **Client** : qui possède un numéro de téléphone, qui peut reserver des circuits, payer des circuits, noter des circuits.
+* Un **Ami**, **Membre de la famille**, qui est rattaché à un client spécifique.
 * Un **Acompagnateur** : qui a un poste, un salaire, et qui peut consulter son emploi du temps.
 
 ### Circuit touristique
@@ -31,10 +32,34 @@ Un client peut laisser un commentaire et/ou une note sur un circuit via une **No
 
 Une notation regroupe une note, un commentaire et un numéro de circuit.
 
+
 Un circuit touristique est composé de plusieurs **étapes**.
 
 ### Étape
 
 Une étape possède une ou plusieurs **activités**, un lieu d'hébergement ainsi qu'un moyen de transport et peut nécessiter la location d'équipements.
 
-Une étape possède un nom, un numéro (ex : étape n°1 du circuit "Découverte de l'Oise"), un lieu (ex : Senlis), 
+Une étape possède un nom, un numéro (ex : étape n°1 du circuit "Découverte de l'Oise"), un lieu (ex : Senlis), une date de début, unê date de fin.
+
+### Activité 
+
+Une activité possède un nom, le nom d'un accompagnateur (si nécessaire) pour cette activité, une heure spécifique de la journée
+(ex : "Cheval" à "8h15"). Une activité peut nécessiter la location d'**équipement**.
+
+### Équipements
+
+Un équipement à un état d'usure (Neuf, très bon, bon, moyen, inutilisable), cet état doit être renseigné par l'utilisateur.
+Il possède une référence, un prix de location, une durée de location.
+
+### Facture
+
+Une facture possède un numero unique rattaché à un circuit et un client, un montant, une date d'émission. 
+Le montant de la facture est différents en fonction de la période. (ex : prix standard, prix de saison : vacances de noel,paques,été).
+
+### Réservation 
+
+Une réservation peut-être faite par le client et possède une date, un numéro de circuit, un numero de client, elle possède différents status:
+réservé, partiellement ou totalement payé, la reservation est close lorsqu'elle est payée, la reservation est annulée lorsque le client
+n'a pas payé 15 jours avant le départ.
+
+
