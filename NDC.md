@@ -18,7 +18,7 @@ Une ressource humaine possède un **NSS** (**N**uméro de **S**écurité **S**oc
 
 Une ressource humaine peut-être : 
 
-* Un **Client** : qui possède un numéro de téléphone
+* Un **Client** : qui possède un numéro de téléphone, qui peut reserver des circuits, payer des circuits, noter des circuits.
 * Un **Acompagnateur** : qui a un poste, un salaire, et qui peut consulter son emploi du temps.
 
 ### Circuit touristique
@@ -35,4 +35,6 @@ Un circuit touristique est composé de plusieurs **étapes**.
 
 ### Étape
 
-Une étape possède une activité, un lieu d'hébergement ainsi qu'un moyen de transport et peut nécessiter la location d'équipements.
+Une étape possède une ou plusieurs **activités**, un lieu d'hébergement ainsi qu'un moyen de transport et peut nécessiter la location d'équipements.
+
+Une étape possède un nom, un numéro (ex : étape n°1 du circuit "Découverte de l'Oise"), un lieu (ex : Senlis), 
