@@ -18,7 +18,7 @@ Une ressource humaine possède un **NSS** (**N**uméro de **S**écurité **S**oc
 
 Une ressource humaine peut-être : 
 
-* Un **Client** : qui possède un numéro de téléphone, qui peut reserver des circuits, payer des circuits, noter des circuits.
+* Un **Client** : qui possède un numéro de téléphone,une adresse, qui peut reserver des circuits, payer des circuits, noter des circuits.
 * Un **Ami**, **Membre de la famille**, qui est rattaché à un client spécifique.
 * Un **Acompagnateur** : qui a un poste, un salaire, et qui peut consulter son emploi du temps.
 
@@ -41,6 +41,11 @@ Une étape possède une ou plusieurs **activités**, un lieu d'hébergement ains
 
 Une étape possède un nom, un numéro (ex : étape n°1 du circuit "Découverte de l'Oise"), un lieu (ex : Senlis), une date de début, unê date de fin.
 
+### Moyen de transport
+
+Un moyen de transport possède un type, un prix, un nom de société qui fait le transport, une date de transport et une étape pour laquelle
+s'effectue le transport.
+
 ### Activité 
 
 Une activité possède un nom, le nom d'un accompagnateur (si nécessaire) pour cette activité, une heure spécifique de la journée
@@ -59,7 +64,17 @@ Le montant de la facture est différents en fonction de la période. (ex : prix 
 ### Réservation 
 
 Une réservation peut-être faite par le client et possède une date, un numéro de circuit, un numero de client, elle possède différents status:
-réservé, partiellement ou totalement payé, la reservation est close lorsqu'elle est payée, la reservation est annulée lorsque le client
-n'a pas payé 15 jours avant le départ.
+réservé, partiellement ou totalement payé.
 
+## Liste des contraintes sur les objets
 
+### Contraintes sur les ressources humaines :
+
+* Un **Client** ne peut pas noter un circuit qu'il n'a pas fait.
+* Un **Accompagnateur** ne peut pas participer à une activité qui n'est pas spécifiée dans son emploi du temps.
+
+### Contraintes sur la réservation
+
+* Une réservation est automatiquement fermée si : 
+    * le statut n'est pas payé 15 jours avant le début du circuit.
+* Un client ne peut pas 
