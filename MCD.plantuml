@@ -99,7 +99,7 @@ package "Intervenants exterieurs" {
     prix_par_personne : float
     type : {avion,bus,bateau}
   }
-  Hebergement "*" -- "*" Etape : heberge
+  Hebergement "1..*" -- "*" Etape : heberge
   (Hebergement,Etape) ... Logement
   class Logement {
         logement : {chambre_hote, hotel}
