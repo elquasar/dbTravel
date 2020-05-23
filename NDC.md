@@ -19,7 +19,6 @@ Une ressource humaine possède un **NSS** (**N**uméro de **S**écurité **S**oc
 Une ressource humaine peut-être : 
 * Un **Personnel** a un poste, un salaire.
 * Un **Client** : qui possède un numéro de téléphone,une adresse, qui peut reserver des circuits, payer des circuits, noter des circuits.
-* Un **Ami**, **Membre de la famille**, qui est rattaché à un client spécifique.
 * Un **Acompagnateur** : qui a un poste, un salaire, et qui peut consulter son emploi du temps, un **accompagnateur** est un **Personnel**.
 
 ### Circuit touristique
@@ -56,15 +55,13 @@ Une activité possède un nom, le nom d'un accompagnateur (si nécessaire) pour 
 Un équipement à un état d'usure (Neuf, très bon, bon, moyen, inutilisable), cet état doit être renseigné par l'utilisateur.
 Il possède une référence, un prix de location, une durée de location.
 
-### Facture
-
-Une facture possède un numero unique rattaché à un circuit et un client, un montant, une date d'émission. 
-Le montant de la facture est différents en fonction de la période. (ex : prix standard, prix de saison : vacances de noel,paques,été).
 
 ### Réservation 
 
 Une réservation peut-être faite par le client et possède une date, un numéro de circuit, un numero de client, elle possède différents status:
 réservé, partiellement ou totalement payé.
+
+Une réservation a un prix, calculé en fonction de la période de l'année, un nombre de personne et un état (annulé, validée, en cours)
 
 ## Liste des contraintes sur les objets
 
