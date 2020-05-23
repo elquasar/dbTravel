@@ -1,0 +1,123 @@
+@startuml
+hide circle
+
+class RessourceHumaine << (S,#FF7700) Abstract >> {
+
+  NSS : int {key}
+  nom : string
+  prenom : string
+  date_naissance : date
+}
+package "Membre de l'agence" {
+
+
+  class Personnel {
+    poste : string
+    salaire : real
+
+  }
+  class Accompagnateur {
+    void emploidutemps()
+  }
+
+  RessourceHumaine <|-- Personnel
+  Personnel <|-- Accompagnateur
+}
+
+package "Espace client" {
+  class Client {
+    num_tel : int
+    adresse : string
+  }
+
+
+
+
+  RessourceHumaine <|-- Client
+}
+
+package "Circuit touristique" {
+
+  class CircuitTouristique {
+    type : string
+    date_depart : date
+    duree : string
+    nb_max : int
+    difficulte : {1,2,3,4,5}
+    float prix()
+  }
+  class Etape {
+    nom : string
+    numero : int
+    lieu : string
+    date_debut : date
+    date_fin : date
+  }
+  class Activite {
+    nom : string
+    heure : string
+    lieu : string
+  }
+
+  CircuitTouristique "1..*"---"1..*" Etape
+  Etape "1"---"1..*" Activite
+
+}
+
+Client "*" -- "*" CircuitTouristique : note_
+(Client,CircuitTouristique) ... Notation
+class Notation {
+  note_ : {1,2,3,4,5,6,7,8,9,10}
+  commentaire : string
+}
+package "Intervenants exterieurs" {
+  class Societe {
+    SIREN : int {key}
+    nom : string
+    reputation : {Bonne, moyenne, mauvaise}
+  }
+  class Transport  {
+  }
+  class Equipement {
+  }
+  class Hebergement {
+  }
+  Societe <|-- Equipement
+  Societe <|-- Transport
+  Societe <|-- Hebergement
+
+  Equipement "*" -- "*" Activite : loue
+  (Equipement,Activite) ... location
+  class location {
+    type_equipement : string
+    usure : {Neuf, tres bon,bon, moyen, inutilisable}
+    prix_equipement : float
+  }
+  Transport "*" -- "*" Etape : transporte_pour_une
+  (Transport,Etape) ... transport
+  class transport {
+    prix_par_personne : float
+    type : {avion,bus,bateau}
+  }
+  Hebergement "*" -- "*" Etape : heberge
+  (Hebergement,Etape) ... Logement
+  class Logement {
+        logement : {chambre_hote, hotel}
+        prix_par_personne : float
+  }
+}
+Client "*" -- "1..*" CircuitTouristique : reserve
+(Client,CircuitTouristique) ... Reservation
+class Reservation {
+  status : {reserve,partiellement paye, totalement paye}
+  date_emission : date
+  nombre_personne : int
+
+  float calcul_montant()
+  bool is_payed()
+}
+note top : nombre_personne >= 1
+
+
+Accompagnateur "*" -- "*" Activite : accompagne
+@enduml
