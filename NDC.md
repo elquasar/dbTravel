@@ -84,7 +84,7 @@ Une réservation a un prix, calculé en fonction de la période de l'année, un 
 
 * Une réservation est automatiquement fermée si : 
     * le montant n'est pas payé 15 jours avant le début du circuit, dans ce cas là, la réservation est annulée.
-    * le paiement à été effectué dans ce cas là, la réservation passe au statut réservé
+    * le paiement à été effectué dans ce cas là, la réservation passe au statut totalement payée.
 
 ### Liste des utilisateurs appelés à modifier et consulter les données
 
