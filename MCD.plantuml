@@ -93,9 +93,9 @@ package "Intervenants exterieurs" {
     usure : {Neuf, tres bon,bon, moyen, inutilisable}
     prix_equipement : float
   }
-  Transport "*" -- "*" Etape : transporte_pour_une
-  (Transport,Etape) ... transport
-  class transport {
+  Transport "*" -- "*" Etape : transporte
+  (Transport,Etape) ... transporte
+  class transporte {
     prix_par_personne : float
     type : {avion,bus,bateau}
   }
