@@ -9,6 +9,7 @@
 * **Circuit touristiques** : étapes, activité,transport, hébergement, équipements
 * **Factures**
 * **Notation**
+* **Société** : location d'équipement, hébergement, transport
 
 ## Liste des propriétés associées à chaque objet
 
@@ -40,21 +41,29 @@ Une étape possède une ou plusieurs **activités**, un lieu d'hébergement ains
 
 Une étape possède un nom, un numéro (ex : étape n°1 du circuit "Découverte de l'Oise"), un lieu (ex : Senlis), une date de début, unê date de fin.
 
-### Moyen de transport
 
-Un moyen de transport possède un type, un prix, un nom de société qui fait le transport, une date de transport et une étape pour laquelle
-s'effectue le transport.
 
 ### Activité 
 
 Une activité possède un nom, le nom d'un accompagnateur (si nécessaire) pour cette activité, une heure spécifique de la journée
 (ex : "Cheval" à "8h15"). Une activité peut nécessiter la location d'**équipement**.
 
-### Équipements
+### Société 
 
-Un équipement à un état d'usure (Neuf, très bon, bon, moyen, inutilisable), cet état doit être renseigné par l'utilisateur.
-Il possède une référence, un prix de location, une durée de location.
+Une société possède un numéro d'identification SIREN, un nom et une réputation. Une société peut-être une société de **Transport**,
+une société d'**Hebergement** ou une société de location d'**équipement**.
 
+### Transport
+
+Un moyen de transport possède un type (avion,bus,voiture), un prix par personne.
+
+### Location
+
+Une location d'équipement à un état d'usure (Neuf, très bon, bon, moyen, inutilisable), un type d'équipement, et un prix.
+
+### Logement 
+
+Un logement possède un type : chambre d'hôte ou hotel et un prix par personne.
 
 ### Réservation 
 
@@ -65,9 +74,6 @@ Une réservation a un prix, calculé en fonction de la période de l'année, un 
 
 ## Liste des contraintes sur les objets
 
-### Contrainte sur un circuit touristique :
-
-* Un circuit touristique ne peut pas durer plus de 90 jours.
 
 ### Contraintes sur les ressources humaines :
 
