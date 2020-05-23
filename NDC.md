@@ -68,6 +68,10 @@ réservé, partiellement ou totalement payé.
 
 ## Liste des contraintes sur les objets
 
+### Contrainte sur un circuit touristique :
+
+* Un circuit touristique ne peut pas durer plus de 90 jours.
+
 ### Contraintes sur les ressources humaines :
 
 * Un **Client** ne peut pas noter un circuit qu'il n'a pas fait.
