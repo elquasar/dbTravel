@@ -55,7 +55,7 @@ une société d'**Hebergement** ou une société de location d'**équipement**.
 
 ### Transport
 
-Un moyen de transport possède un type (avion,bus,voiture), un prix par personne.
+Un moyen de transport possède un type (avion,bus,voiture) et un prix par personne.
 
 ### Location
 
