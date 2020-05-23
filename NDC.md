@@ -17,10 +17,10 @@
 Une ressource humaine possède un **NSS** (**N**uméro de **S**écurité **S**ocial) qui est unique, un nom, un prénom et une date de naissance.
 
 Une ressource humaine peut-être : 
-
+* Un **Personnel** a un poste, un salaire.
 * Un **Client** : qui possède un numéro de téléphone,une adresse, qui peut reserver des circuits, payer des circuits, noter des circuits.
 * Un **Ami**, **Membre de la famille**, qui est rattaché à un client spécifique.
-* Un **Acompagnateur** : qui a un poste, un salaire, et qui peut consulter son emploi du temps.
+* Un **Acompagnateur** : qui a un poste, un salaire, et qui peut consulter son emploi du temps, un **accompagnateur** est un **Personnel**.
 
 ### Circuit touristique
 
@@ -78,3 +78,23 @@ réservé, partiellement ou totalement payé.
 * Une réservation est automatiquement fermée si : 
     * le montant n'est pas payé 15 jours avant le début du circuit, dans ce cas là, la réservation est annulée.
     * le paiement à été effectué dans ce cas là, la réservation passe au statut réservé
+
+### Liste des utilisateurs appelés à modifier et consulter les données
+
+* En cas d'annulation d'une réservation, un client doit être en mesure de pouvoir modifier le statut de sa réservation
+    au statut "annulé".
+* Les membres du **Personnels** doivent pouvoir :
+    * gérer les clients et leur données
+    * gérer les circuits, activités et étapes
+    * gérer la location et le transport
+
+* Un client peut consulter à tout moment sa facture ainsi que son profil, le circuit, les étapes et les activités
+ qu'il va faire.
+
+### Liste des fonctions que ces utilisateurs pourront effectuer
+
+* **Acompagnateur** : consulter son emploi du temps, s'inscrire pour une activité.
+* **Personnels** : ajouter,modifier, supprimer un moyen de transport, une location, et le prix d'un circuit (il peut faire une ristourne).
+* **Client** : doit pouvoir modifier son profil sauf son NSS, ajouter d'autres membres à un circuit.
+
+
