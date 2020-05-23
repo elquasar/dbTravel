@@ -1,7 +1,7 @@
 @startuml
-hide circle
 
-class RessourceHumaine << (S,#FF7700) Abstract >> {
+
+class RessourceHumaine << (A,#FF7700) Abstract >> {
 
   NSS : int {key}
   nom : string
@@ -71,7 +71,7 @@ class Notation {
   commentaire : string
 }
 package "Intervenants exterieurs" {
-  class Societe {
+  class Societe << (A,#FF7700) Abstract >> {
     SIREN : int {key}
     nom : string
     reputation : {Bonne, moyenne, mauvaise}
