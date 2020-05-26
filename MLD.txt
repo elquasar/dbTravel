@@ -1,17 +1,19 @@
 RessourceHumaine(#NSS : int, nom : string, prenom : string, date_naissance : date)
 
-Personnel(#Peronne => RessourceHumaine : int, poste : string, salaire : decimal)
+Personnel(#Personne => RessourceHumaine : int, poste : string, salaire : decimal)
 
 Accompagnateur(#Personne =>RessourceHumaine : int, poste : string, salaire : decimal)
 
 Client(#NSS => RessourceHumaine : int, adresse : string)
 
 
-Societe(#SIREN : int, nom : string, reputation : {Bonne|Moyenne|Mauvaise})
+Societe(#SIREN : int, 
+        nom : string, 
+        reputation : {Bonne|Moyenne|Mauvaise},
+        t: {Transport | Hebergement | Equipement}) avec t NOT NULL
 
-Transporteur(#SIREN => Societe)
-Hebergeur(#SIREN => Societe)
-Equipementier(#SIREN => Societe)
+
+
 
 transporte(#Societe => Transporteur.SIREN : int, 
            #Etape_id => Etape.id, 
@@ -73,14 +75,9 @@ Contraintes :
 
 // Contrainte sur classe mère abstraite (RessourceHumaine -> Client - Personnel) (héritage par référence)
 
-Intersection(Projection(Client,NSS),Projection(Personnel, NSS))
+PROJECTION(RessourceHumaine,NSS) = PROJECTION(Client,Personne) UNION PROJECTION(Personnel,Personne)
 
-// Contrainte sur classe mère abstraite (Societe -> Hebergeur - Equipementier - Transporteur) (héritage par classe mère)
 
-Projection(Societe,SIREN) = Union(Projection(Equipementier,SIREN), 
-                                  Projection(Hebergeur,SIREN), 
-                                  Projection(Transporteur,SIREN)
-                                  )
                                   
 // Contrainte sur association N:M (CircuitTouristique - Etape)
 
