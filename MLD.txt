@@ -40,9 +40,25 @@ CircuitTouristique(#id : int,
                    difficulte : {1|2|3|4|5}
                    )
                    
-Etape(#id : int,nom : string, lieu : string, date_debut : date_fin :date) avec nom,lieu,date_debut NOT NULL
+Etape(#id : int,
+      nom : string, 
+      lieu : string, 
+      date_debut : date,
+      date_fin :date
+      ) avec nom,lieu,date_debut NOT NULL
+
 Activite(#id : int, nom : string, lieu : string)
 
-Reservation (#client => client.NSS, #circuit_id => CircuitTouristique.id, status : {reserve| partiellement payé | totalement payé}, date_emission : date, nombre_personne : int)
-Notation (#client => client.NSS, #circuit_id : CircuitTouristique.id, note : {1|2|...|10}, commentaire : string)
+Reservation (#client => client.NSS, 
+             #circuit_id => CircuitTouristique.id, 
+             status : {reserve| partiellement payé | totalement payé},
+             date_emission : date, 
+             nombre_personne : int
+             )
+             
+Notation (#client => client.NSS, 
+          #circuit_id : CircuitTouristique.id, 
+          note : {1|2|...|10}, 
+          commentaire : string
+          )
 
