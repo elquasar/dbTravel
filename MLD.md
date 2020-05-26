@@ -18,18 +18,18 @@ transporte(#Societe => Transporteur.SIREN : int,
            type : {avion,bus,bateau}
            )
 
-logement (#Societe => Hebergeur.SIREN : int, 
-          #Etape_id => Etape.id : int, 
-          prix_par_personne : decimal, 
-          logement {chambre_hote, hotel}
-          )
+logement (#Societe => Hebergeur.SIREN : int, <br>
+          #Etape_id => Etape.id : int, <br>
+          prix_par_personne : decimal, <br>
+          logement {chambre_hote, hotel} <br>
+          )<br>
 
-location (#Societe => Equipementier.SIREN : int, 
-          #Activite_id => Activite.id : int, 
-          type_equipement : string, 
-          usure  : {Neuf | très bon | bon |moyen | inutilisable},
-          prix_equipement : decimal
-         )
+location (#Societe => Equipementier.SIREN : int, <br>
+          #Activite_id => Activite.id : int, <br>
+          type_equipement : string, <br>
+          usure  : {Neuf | très bon | bon |moyen | inutilisable},<br>
+          prix_equipement : decimal <br>
+         ) <br>
 
 
 
