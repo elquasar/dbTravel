@@ -1,7 +1,8 @@
 RessourceHumaine(#NSS : int, nom : string, prenom : string, date_naissance : date)
 
-Personnel(#NSS => RessourceHumaine : int, poste : string, salaire : decimal)
-Accompagnateur(#NSS =>RessourceHumaine : int, poste : string, salaire : decimal)
+Personnel(#Peronne => RessourceHumaine : int, poste : string, salaire : decimal)
+
+Accompagnateur(#Personne =>RessourceHumaine : int, poste : string, salaire : decimal)
 
 Client(#NSS => RessourceHumaine : int, adresse : string)
 
@@ -16,20 +17,20 @@ transporte(#Societe => Transporteur.SIREN : int,
            #Etape_id => Etape.id, 
            prix_par_personne : decimal, 
            type : {avion,bus,bateau}
-           )
+           ) avec type NOT NULL
 
 logement (#Societe => Hebergeur.SIREN : int, 
           #Etape_id => Etape.id : int, 
           prix_par_personne : decimal, 
           logement {chambre_hote, hotel}
-          )
+          ) avec logement NOT NULL
 
 location (#Societe => Equipementier.SIREN : int,
           #Activite_id => Activite.id : int, 
           type_equipement : string,
           usure  : {Neuf | très bon | bon |moyen | inutilisable},
           prix_equipement : decimal
-         ) 
+         ) avec usure, type_equipement NOT NULL
 
 
 CircuitTouristique(#id : int,
@@ -45,9 +46,15 @@ Etape(#id : int,
       lieu : string, 
       date_debut : date,
       date_fin :date
-      ) avec nom,lieu,date_debut NOT NULL
+      circuit_id => CircuitTouristique.id : int 
+      ) avec nom,lieu,date_debut, circuit NOT NULL
 
-Activite(#id : int, nom : string, lieu : string)
+Activite(#id : int, 
+         nom : string, 
+         lieu : string, 
+         accompagnateur => accompagnateur.nom : string,
+         etape_id => Etape.id int
+         ) avec Etape NOT NULL
 
 Reservation (#client => client.NSS, 
              #circuit_id => CircuitTouristique.id, 
@@ -56,9 +63,33 @@ Reservation (#client => client.NSS,
              nombre_personne : int
              )
              
-Notation (#client => client.NSS, 
+Notation (client => client.nom, 
           #circuit_id : CircuitTouristique.id, 
           note : {1|2|...|10}, 
           commentaire : string
           )
+          
+Contraintes : 
+
+// Contrainte sur classe mère abstraite (RessourceHumaine -> Client - Personnel)
+
+Projection(RessourceHumaine,NSS) = Union(Projection(Client,NSS),Projection(Personnel, NSS))
+
+// Contrainte sur classe mère abstraite (Societe -> Hebergeur - Equipementier - )
+
+Projection(Societe,SIREN) = Union(Projection(Equipementier,SIREN), 
+                                  Projection(Hebergeur,SIREN), 
+                                  Projection(Transporteur,SIREN)
+                                  )
+                                  
+// Contrainte sur association 1:N (CircuitTouristique - Etape)
+
+Projection(CircuitTouristique,id) = Projection(Etape,circuit_id)
+
+// Contrainte sur association 1:N (Etape - Activite)
+
+Projection(Etape,id) = Projection(Activite, etape_id)
+
+
+
 
