@@ -71,22 +71,22 @@ Notation (client => client.nom,
           
 Contraintes : 
 
-// Contrainte sur classe mère abstraite (RessourceHumaine -> Client - Personnel)
+// Contrainte sur classe mère abstraite (RessourceHumaine -> Client - Personnel) (héritage par référence)
 
-Projection(RessourceHumaine,NSS) = Union(Projection(Client,NSS),Projection(Personnel, NSS))
+Intersection(Projection(Client,NSS),Projection(Personnel, NSS))
 
-// Contrainte sur classe mère abstraite (Societe -> Hebergeur - Equipementier - )
+// Contrainte sur classe mère abstraite (Societe -> Hebergeur - Equipementier - Transporteur) (héritage par classe mère)
 
 Projection(Societe,SIREN) = Union(Projection(Equipementier,SIREN), 
                                   Projection(Hebergeur,SIREN), 
                                   Projection(Transporteur,SIREN)
                                   )
                                   
-// Contrainte sur association 1:N (CircuitTouristique - Etape)
+// Contrainte sur association N:M (CircuitTouristique - Etape)
 
 Projection(CircuitTouristique,id) = Projection(Etape,circuit_id)
 
-// Contrainte sur association 1:N (Etape - Activite)
+// Contrainte sur association N:M (Etape - Activite)
 
 Projection(Etape,id) = Projection(Activite, etape_id)
 
