@@ -87,6 +87,11 @@ Projection(CircuitTouristique,id) = Projection(Etape,circuit_id)
 
 Projection(Etape,id) = Projection(Activite, etape_id)
 
+// Contrainte sur association 1..N, 0...N (Client <- Réservation -> Circuit touristique) 
+
+Projection(Client, NSS) = Projection(Reservation, client)
+
+
 
 
 
