@@ -18,19 +18,18 @@ transporte(#Societe => Transporteur.SIREN : int,
            type : {avion,bus,bateau}
            )
 
-logement (#Societe => Hebergeur.SIREN : int, <br>
-          #Etape_id => Etape.id : int, <br>
-          prix_par_personne : decimal, <br>
-          logement {chambre_hote, hotel} <br>
-          )<br>
+logement (#Societe => Hebergeur.SIREN : int, 
+          #Etape_id => Etape.id : int, 
+          prix_par_personne : decimal, 
+          logement {chambre_hote, hotel}
+          )
 
-location (#Societe => Equipementier.SIREN : int, <br>
-          #Activite_id => Activite.id : int, <br>
-          type_equipement : string, <br>
-          usure  : {Neuf | très bon | bon |moyen | inutilisable},<br>
-          prix_equipement : decimal <br>
-         ) <br>
-
+location (#Societe => Equipementier.SIREN : int,
+          #Activite_id => Activite.id : int, 
+          type_equipement : string,
+          usure  : {Neuf | très bon | bon |moyen | inutilisable},
+          prix_equipement : decimal
+         ) 
 
 
 CircuitTouristique(#id : int,
@@ -41,5 +40,9 @@ CircuitTouristique(#id : int,
                    difficulte : {1|2|3|4|5}
                    )
                    
-Etape(#id : int,nom : string, lieu : string, date_debut : date_fin :date) avec nom,lieu date_debut NOT NULL
+Etape(#id : int,nom : string, lieu : string, date_debut : date_fin :date) avec nom,lieu,date_debut NOT NULL
 Activite(#id : int, nom : string, lieu : string)
+
+Reservation (#client => client.NSS, #circuit_id => CircuitTouristique.id, status : {reserve| partiellement payé | totalement payé}, date_emission : date, nombre_personne : int)
+Notation (#client => client.NSS, #circuit_id : CircuitTouristique.id, note : {1|2|...|10}, commentaire : string)
+
