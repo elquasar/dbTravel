@@ -1,8 +1,9 @@
 RessourceHumaine(#NSS : int, nom : string, prenom : string, date_naissance : date)
 
-Personnel(#Personne => RessourceHumaine : int, poste : string, salaire : decimal)
+Personnel(#Personne => RessourceHumaine : int, poste : string, salaire : decimal, t : {1 | 2}) avec t NOT NULL
 
-Accompagnateur(#Personne =>RessourceHumaine : int, poste : string, salaire : decimal)
+// Si t = 1 alors c'est un personnel, si t = 2 c'est un accompagnateur
+// On peut supposer que tout membre du Personnel de l'agence doit pouvoir accès à son emploi du temps
 
 Client(#NSS => RessourceHumaine : int, adresse : string)
 
@@ -10,8 +11,11 @@ Client(#NSS => RessourceHumaine : int, adresse : string)
 Societe(#SIREN : int, 
         nom : string, 
         reputation : {Bonne|Moyenne|Mauvaise},
-        t: {Transport | Hebergement | Equipement}) avec t NOT NULL
+        t: {1 | 2 | 3}) avec t NOT NULL
 
+// Si t = 1 : Societe de Transport
+// Si t = 2 : Societe d'Hebergement
+// Si t = 3 : Societe de location d'équipement
 
 
 
@@ -65,7 +69,7 @@ Reservation (#client => client.NSS,
              nombre_personne : int
              )
              
-Notation (client => client.nom, 
+Notation (#client => client.nom, 
           #circuit_id : CircuitTouristique.id, 
           note : {1|2|...|10}, 
           commentaire : string
@@ -78,20 +82,36 @@ Contraintes :
 PROJECTION(RessourceHumaine,NSS) = PROJECTION(Client,Personne) UNION PROJECTION(Personnel,Personne)
 
 
-                                  
+
 // Contrainte sur association N:M (CircuitTouristique - Etape)
 
-Projection(CircuitTouristique,id) = Projection(Etape,circuit_id)
+PROJECTION(CircuitTouristique,id) = PROJECTION(Etape,circuit_id)
+
 
 // Contrainte sur association N:M (Etape - Activite)
 
-Projection(Etape,id) = Projection(Activite, etape_id)
+PROJECTION(Etape,id) = PROJECTION(Activite, etape_id)
+
 
 // Contrainte sur association 1..N, 0...N (Client <- Réservation -> Circuit touristique) 
 
-Projection(Client, NSS) = Projection(Reservation, client)
+PROJECTION(Client, NSS) = PROJECTION(Reservation, client)
 
 
+// Contrainte sur association 1..N, 1..N (Hebergement <- Logement -> Etape)
+
+PROJECTION(Herbergement,SIREN) = PROJECTION(Logement,Societe) AND PROJECTION(Etape, id) = PROJECTION(Logement, Etape_id)
+
+
+
+
+Vues : 
+
+vTransport = projection(restriction(Societe,t=1),nom,reputation)
+
+vHerbergement = projection(restriction(Societe,t=2),nom,reputation)
+
+vEquipement = projection(restriction(Societe,t=3),nom,reputation)
 
 
 
