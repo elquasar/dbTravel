@@ -31,7 +31,7 @@ CREATE TYPE type_societe AS ENUM('Transport','Hebergement','Equipement');
 
 CREATE TABLE Societe (
         
-        SIREN varchar(9) PRIMARY KEY,
+        SIREN varchar(14) PRIMARY KEY,
         nom text NOT NULL,
         reputation text CHECK (reputation IN ('Bonne','Moyenne','Mauvaise')),
         t type_societe NOT NULL
@@ -75,7 +75,7 @@ CREATE TABLE Activite (
 
 CREATE TABLE transporte (
         id int PRIMARY KEY,
-        Societe varchar(9),
+        Societe varchar(14),
         Etape int,
         prix_par_personne decimal NOT NULL,
         type_transport text NOT NULL CHECK(type_transport IN ('Avion','Bateau','Bus')),
@@ -86,7 +86,7 @@ CREATE TABLE transporte (
 CREATE TABLE logement (
         
         id int PRIMARY KEY,
-        Societe varchar(9),
+        Societe varchar(14),
         Etape int,
         prix_par_personne decimal NOT NULL,
         type_logement text NOT NULL CHECK(type_logement IN ('chambre hote', 'hotel')),
@@ -98,7 +98,7 @@ CREATE TABLE logement (
 CREATE TABLE location (
         
         id int PRIMARY KEY,
-        Societe varchar(9),
+        Societe varchar(14),
         Activite int,
         type_equipement text,
         prix_equipement decimal NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE Reservation (
     id int PRIMARY KEY,
     Client text NOT NULL,
     CircuitTouristique int,
-    status text NOT NULL,
+    status text NOT NULL CHECK(status IN ('Reservé','Partiellement payé','Payé')),
     date_emission date NOT NULL,
     nombre_personne int NOT NULL,
     FOREIGN KEY (Client) REFERENCES Client(NSS),
@@ -138,12 +138,29 @@ INSERT INTO RessourceHumaine VALUES ('598072452892409','Renard','Vincent','1998-
 
 
 INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la république');
-INSERT INTO Client VALUES ('198074722520893','689784565','Rue des belles femmes');
-INSERT INTO Personnel VALUES ('198072722924031','Charge d affaire','5000',NULL);
+INSERT INTO Client VALUES ('598072452892409','0658785369','Rue des belles femmes');
+INSERT INTO Personnel VALUES ('198072722924031','Charge d affaire','5000','Accompagnateur');
 
 INSERT INTO CircuitTouristique VALUES ('01','Aquatique','2020-05-30','7 jours','25',5);
 INSERT INTO CircuitTouristique VALUES ('02','Montagne','2020-02-12','15 jours','18',3);
-INSERT INTO CircuitTouristique VALUES ('03,'Aviation','2020-07-30','7 jours','10',1);
+INSERT INTO CircuitTouristique VALUES ('03','Aviation','2020-07-30','7 jours','10',1);
+
+INSERT INTO Etape VALUES(1,'Fort des Salettes', 05,'Briançon','2020-02-12','2020-02-13',02);
+INSERT INTO Etape VALUES (2,'Fort Boyard',3,'Pertuis d antioche','2020-05-30','2020-06-04',1);
 
 
+INSERT INTO Activite VALUES(1,'Parapente','8h','Fort des Salettes',1,198072722924031);
 
+INSERT INTO Societe VALUES(48170829500037,'ParapenteLOC','Bonne','Equipement');
+INSERT INTO Societe VALUES(32212091600208,'AutoBUS','Moyenne','Transport');
+INSERT INTO Societe VALUES(30264000800017,'HAUTel','Bonne','Hebergement');
+
+
+INSERT INTO Transporte VALUES (1,32212091600208,1,25.56,'Bus');
+INSERT INTO Logement VALUES (1,30264000800017,1,55,'chambre hote');
+INSERT INTO Location VALUES (1,48170829500037,1,'Parapente',65,'très bon');
+INSERT INTO Location VALUES (2,48170829500037,1,'Casque et système d accroche',35,'moyen');
+
+
+INSERT INTO Reservation VALUES (1,598072452892409,2,'Reservé','2019-12-12',2);
+INSERT INTO Notation VALUES(1,198074722520893,3,8,'Un circuit incroyable');
