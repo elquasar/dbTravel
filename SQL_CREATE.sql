@@ -131,6 +131,21 @@ CREATE TABLE Notation (
     FOREIGN KEY (CircuitTouristique) REFERENCES CircuitTouristique(id)
 );
 
+CREATE VIEW vHebergeur
+AS SELECT *
+FROM Societe
+WHERE Societe.t='Hebergement';
+
+CREATE VIEW vEquipementier
+AS SELECT *
+FROM Societe
+WHERE Societe.t='Equipement';
+
+
+CREATE VIEW vTransporteur
+AS SELECT *
+FROM Societe
+WHERE Societe.t='Transport';
 
 
 INSERT INTO RessourceHumaine VALUES ('198072722924031','Leprat','Quentin','1998-07-01');
