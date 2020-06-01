@@ -103,6 +103,7 @@ CREATE TABLE location (
         type_equipement text,
         prix_equipement decimal NOT NULL,
         usure text NOT NULL CHECK(usure IN ('Neuf','très bon','bon','moyen','inutilisable')),
+        quantite int NOT NULL,
         FOREIGN KEY (Societe) REFERENCES Societe(SIREN),
         FOREIGN KEY (Activite) REFERENCES Activite(id)
 );
@@ -158,8 +159,8 @@ INSERT INTO Societe VALUES(30264000800017,'HAUTel','Bonne','Hebergement');
 
 INSERT INTO Transporte VALUES (1,32212091600208,1,25.56,'Bus');
 INSERT INTO Logement VALUES (1,30264000800017,1,55,'chambre hote');
-INSERT INTO Location VALUES (1,48170829500037,1,'Parapente',65,'très bon');
-INSERT INTO Location VALUES (2,48170829500037,1,'Casque et système d accroche',35,'moyen');
+INSERT INTO Location VALUES (1,48170829500037,1,'Parapente',65,'très bon',10);
+INSERT INTO Location VALUES (2,48170829500037,1,'Casque et système d accroche',35,'moyen',20);
 
 
 INSERT INTO Reservation VALUES (1,598072452892409,2,'Reservé','2019-12-12',2);
