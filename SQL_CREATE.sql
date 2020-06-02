@@ -155,7 +155,7 @@ WHERE status = 'Payé'
 GROUP BY Mon;
 
 CREATE VIEW vCircuitFamous
-AS SELECT SUM(nombre_personne) AS NbPersonne, circuittouristique
+AS SELECT  circuittouristique, SUM(nombre_personne) AS NbPersonne
 FROM Reservation
 WHERE status = 'Payé'
 GROUP BY circuittouristique
