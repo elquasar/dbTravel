@@ -149,9 +149,10 @@ WHERE Societe.t='Transport';
 
 
 CREATE VIEW vNombreReservation
-AS SELECT COUNT(Reservation.id), Reservation.date_emission, nombre_personne
+AS SELECT COUNT(*) AS NombreReservation, to_char(date_emission,'Mon') as Mon
 FROM Reservation
-WHERE Reservation.id = 1;
+WHERE status = 'Payé'
+GROUP BY Mon;
 
 
 INSERT INTO RessourceHumaine VALUES ('198072722924031','Leprat','Quentin','1998-07-01');
@@ -184,5 +185,10 @@ INSERT INTO Location VALUES (1,48170829500037,1,'Parapente',65,'très bon',10);
 INSERT INTO Location VALUES (2,48170829500037,1,'Casque et système d accroche',35,'moyen',20);
 
 
-INSERT INTO Reservation VALUES (1,598072452892409,2,'Reservé','2019-12-12',2);
+INSERT INTO Reservation VALUES (1,598072452892409,2,'Reservé','2019-12-09',2);
+INSERT INTO Reservation VALUES (2,598072452892409,2,'Reservé','2019-12-07',4);
+INSERT INTO Reservation VALUES (3,598072452892409,2,'Payé','2019-11-11',7);
+INSERT INTO Reservation VALUES (4,598072452892409,2,'Payé','2019-11-11',9);
+INSERT INTO Reservation VALUES (5,598072452892409,2,'Payé','2019-12-07',3);
+
 INSERT INTO Notation VALUES(1,198074722520893,3,8,'Un circuit incroyable');
