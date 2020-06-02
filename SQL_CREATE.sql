@@ -155,7 +155,7 @@ WHERE status = 'Payé'
 GROUP BY Mon;
 
 CREATE VIEW vCircuitFamous
-AS SELECT MAX(SUM(nombre_personne)) AS NbPersonne, circuittouristique
+AS SELECT SUM(nombre_personne) AS NbPersonne, circuittouristique
 FROM Reservation
 WHERE status = 'Payé'
 GROUP BY circuittouristique
@@ -199,10 +199,10 @@ INSERT INTO Reservation VALUES (4,598072452892409,2,'Payé','2019-11-11',9);
 INSERT INTO Reservation VALUES (5,598072452892409,2,'Payé','2019-12-07',3);
 
 
-INSERT INTO Reservation VALUES (11,198072722924031,3,'Reservé','2019-12-09',10);
+INSERT INTO Reservation VALUES (11,198074722520893,3,'Reservé','2019-12-09',10);
 INSERT INTO Reservation VALUES (21,598072452892409,2,'Reservé','2019-12-07',4);
-INSERT INTO Reservation VALUES (31,198072722924031,2,'Payé','2019-11-11',7);
-INSERT INTO Reservation VALUES (41,198072722924031,3,'Payé','2019-11-11',15);
+INSERT INTO Reservation VALUES (31,198074722520893,2,'Payé','2019-11-11',7);
+INSERT INTO Reservation VALUES (41,198074722520893,3,'Payé','2019-11-11',15);
 INSERT INTO Reservation VALUES (51,598072452892409,2,'Payé','2019-12-07',3);
 
 INSERT INTO Notation VALUES(1,198074722520893,3,8,'Un circuit incroyable');
