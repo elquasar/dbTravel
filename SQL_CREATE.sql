@@ -148,6 +148,12 @@ FROM Societe
 WHERE Societe.t='Transport';
 
 
+CREATE VIEW vNombreReservation
+AS SELECT COUNT(Reservation.id), Reservation.date_emission, nombre_personne
+FROM Reservation
+WHERE Reservation.id = 1;
+
+
 INSERT INTO RessourceHumaine VALUES ('198072722924031','Leprat','Quentin','1998-07-01');
 INSERT INTO RessourceHumaine VALUES ('198074722520893','Durand','Antoine','2007-09-01');
 INSERT INTO RessourceHumaine VALUES ('598072452892409','Renard','Vincent','1998-08-05');
