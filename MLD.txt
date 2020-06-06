@@ -19,6 +19,7 @@ Societe(#SIREN : int,
 
 
 
+
 transporte(#Societe => Transporteur.SIREN : int, 
            #Etape_id => Etape.id, 
            prix_par_personne : decimal, 
@@ -44,8 +45,10 @@ CircuitTouristique(#id : int,
                    date_depart : date, 
                    duree : string, 
                    nb_max : int, 
+                   accompagnateur => accompagnateur.nom : string
                    difficulte : {1|2|3|4|5}
                    )
+
                    
 Etape(#id : int,
       nom : string, 
@@ -55,12 +58,15 @@ Etape(#id : int,
       circuit_id => CircuitTouristique.id : int 
       ) avec nom,lieu,date_debut, circuit NOT NULL
 
+
+
+
 Activite(#id : int, 
          nom : string, 
          lieu : string, 
-         accompagnateur => accompagnateur.nom : string,
          etape_id => Etape.id int
          ) avec Etape NOT NULL
+
 
 Reservation (#client => client.NSS, 
              #circuit_id => CircuitTouristique.id, 
@@ -113,5 +119,102 @@ vHerbergement = projection(restriction(Societe,t=2),nom,reputation)
 
 vEquipement = projection(restriction(Societe,t=3),nom,reputation)
 
+// NORMALISATION : 
+
+
+Les relations suivantes sont déjà en 3NF : Activite,Etape,CircuitTouristique,Societe,Client,RessourceHumaine,Reservation,Notation.
+
+
+// Mise sous 3NF de Personnel : 
+
+Personnel(#Personne => RessourceHumaine : int, poste : string, salaire : decimal, t : {1 | 2})
+
+- personnel est en 2NF, mais comme le poste --> salaire, elle n'est pas en 3NF.
+- la forme 3NF est donc :
+
+Personnel(#Personne => RessourceHumaine : int, Poste => Poste : string t : {1 | 2})
+Poste(#Poste,salaire)
+
+// Mise sous 3NF de transporte
+
+
+
+transporte(#Societe => Transporteur.SIREN : int, 
+           #Etape_id => Etape.id, 
+           prix_par_personne : decimal, 
+           type : {avion,bus,bateau}
+           )
+
+ - transporte est déjà en 2NF car les deux clés déterminent toutes les deux tous les attributs non clés
+
+Societe --> prix_par_personne,type
+Etape --> prix_par_personne, type
+
+- On remarque que le type --> prix_par_personne (si c'est un avion c'est plus cher que le bus)
+
+- la forme 3NF est donc : 
+
+transporte(#Societe => Transporteur.SIREN : int, 
+           #Etape_id => Etape.id, 
+           Type_transport => Type
+           )
+           
+Type (#Type_transport : {avion,bus,bateau} , prix_par_personne : decimal)
+
+// Mise sous 3NF de logement
+
+- c'est la même chose que transporte, le  type_logemnt -- > prix_par_personne 
+- la forme 3NF est donc : 
+
+logement (#Societe => Hebergeur.SIREN : int, 
+          #Etape_id => Etape.id : int, 
+          type_logement => Type_logement 
+          ) 
+Type_logement(#type_logement : {chambre_hote, hotel}, prix_par_personne : decimal)
+         
+
+// Mise sous 2NF et 3NF de location 
+
+location (#Societe => Equipementier.SIREN : int,
+          #Activite => Activite.id : int, 
+          type_equipement : string,
+          usure  : {Neuf | très bon | bon |moyen | inutilisable},
+          prix_equipement : decimal
+         )
+
+On remarque que Societe,Activite --> type_equipement, usure, prix_equipement
+                Activite --> type_equipement
+
+- la forme 2NF est donc :
+
+location (#Societe => Societe_type
+          #Activite => Activite : int, 
+         )
+
+Activite(#Activite => Activite.id : int, type_equipement : string) (3NF)
+
+Societe_type (#Societe.id =>Equipementier.SIREN : int, usure  : {Neuf | très bon | bon |moyen | inutilisable},
+          prix_equipement : decimal) (2NF)
+          
+- mise sous 3NF de societe_type : 
+
+Societe_type (#Societe.id =>Equipementier.SIREN : int,
+          prix_equipement => prix_equipement : decimal)
+
+prix_equipement(#prix_equipement,usure  : {Neuf | très bon | bon |moyen | inutilisable})
+
+
+- résumé : 
+
+location (#Societe => Societe_type
+          #Activite => Activite_type, 
+         )
+         
+Activite_type(#Activite => Activite.id : int, type_equipement : string)
+
+Societe_type (#Societe.id =>Equipementier.SIREN : int,
+          prix_equipement => prix_equipement : decimal)
+
+prix_equipement(#prix_equipement, usure  : {Neuf | très bon | bon |moyen | inutilisable})
 
 
