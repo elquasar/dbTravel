@@ -119,5 +119,5 @@ class Reservation {
 note top : nombre_personne >= 1
 
 
-Accompagnateur "*" -- "*" Activite : accompagne
+Accompagnateur "*" -- "*" CircuitTouristique : accompagne
 @enduml
