@@ -132,7 +132,7 @@ CREATE TABLE Notation (
 );
 
 
-// Création des vues pour afficher les classes qui héritent de société
+-- Création des vues pour afficher les classes qui héritent de société
 
 CREATE VIEW vHebergeur
 AS SELECT *
@@ -150,7 +150,7 @@ AS SELECT *
 FROM Societe
 WHERE Societe.t='Transport';
 
-// Création des vues pour les statistiques
+-- Création des vues pour les statistiques
 
 CREATE VIEW vNombreReservation
 AS SELECT COUNT(*) AS NombreReservation, to_char(date_emission,'Mon') as Mon
@@ -165,7 +165,7 @@ WHERE status = 'Payé'
 GROUP BY circuittouristique,yyyy
 ORDER BY NbPersonne DESC;
 
-// Création de la vue pour le client (accès au contenu de sa réservation)
+-- Création de la vue pour le client (accès au contenu de sa réservation)
 
 CREATE VIEW vClient
 AS SELECT  RessourceHumaine.nom AS nom_client,
@@ -185,7 +185,7 @@ WHERE RessourceHumaine.NSS = Client.NSS
       AND Logement.etape = Etape.id;
 
 
-// Insertion de quelques valeurs
+-- Insertion de quelques valeurs
 
 INSERT INTO RessourceHumaine VALUES ('198072722924031','Leprat','Quentin','1998-07-01');
 INSERT INTO RessourceHumaine VALUES ('198074722520893','Durand','Antoine','2007-09-01');
@@ -233,10 +233,10 @@ INSERT INTO Reservation VALUES (51,598072452892409,2,'Payé','2019-12-07',50);
 INSERT INTO Notation VALUES(1,198074722520893,3,8,'Un circuit incroyable');
 
 
-// Gestion des droits 
+-- Gestion des droits (ne fonctionne aps sur les serveurs de l'UTC)
 
-CREATE ROLE Membre_agence;
-CREATE ROLE Client; 
+ -- CREATE ROLE Membre_agence;
+ -- CREATE ROLE Client; 
 
-GRANT ALL PRIVILEGES TO Membre_agence; 
-GRANT INSERT ON Client, Resveration TO Client;
+-- GRANT ALL PRIVILEGES TO Membre_agence; 
+-- GRANT INSERT ON Client, Resveration TO Client;
