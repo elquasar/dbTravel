@@ -88,8 +88,7 @@ Une réservation a un prix, calculé en fonction de la période de l'année, un 
 
 ### Liste des utilisateurs appelés à modifier et consulter les données
 
-* En cas d'annulation d'une réservation, un client doit être en mesure de pouvoir modifier le statut de sa réservation
-    au statut "annulé".
+* En cas d'annulation d'une réservation, un client doit demander à un employé de l'agence de supprimer sa réservation.
 * Les membres du **Personnels** doivent pouvoir :
     * gérer les clients et leur données
     * gérer les circuits, activités et étapes
@@ -100,8 +99,10 @@ Une réservation a un prix, calculé en fonction de la période de l'année, un 
 
 ### Liste des fonctions que ces utilisateurs pourront effectuer
 
-* **Acompagnateur** : consulter son emploi du temps, s'inscrire pour une activité.
-* **Personnels** : ajouter,modifier, supprimer un moyen de transport, une location, et le prix d'un circuit (il peut faire une ristourne).
-* **Client** : doit pouvoir modifier son profil sauf son NSS, ajouter d'autres membres à un circuit.
+* **Acompagnateur** : consulter son emploi du temps.
+* **Personnels** : peut consulter le planning d'un accompagnateur et le modifier, peuvent supprimer des reservations, 
+*                  des clients, des étapes ou des activités pour un Circuit Touristique. Si un circuit n'est pas très
+*                  fréquenté, ils peuvent aussi supprimer ce circuit.
+* **Client** : peut seulement accéder à son profil et ses réservations.
 
 
