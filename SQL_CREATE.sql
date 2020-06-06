@@ -155,7 +155,7 @@ WHERE status = 'Payé'
 GROUP BY Mon;
 
 CREATE VIEW vCircuitFamous
-AS SELECT  circuittouristique, SUM(nombre_personne) AS NbPersonne, extract(year from date_emission) as yyyy,
+AS SELECT  circuittouristique, SUM(nombre_personne) AS NbPersonne, extract(year from date_emission) as yyyy
 FROM Reservation
 WHERE status = 'Payé'
 GROUP BY circuittouristique,yyyy
