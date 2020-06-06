@@ -162,6 +162,23 @@ GROUP BY circuittouristique,yyyy
 ORDER BY NbPersonne DESC;
 
 
+CREATE VIEW vClient
+AS SELECT  RessourceHumaine.nom AS nom_client,
+           CircuitTouristique.type_circuit, 
+           Etape.nom AS nom_etape, 
+           Activite.nom AS nom_Activite,
+           Transporte.type_transport,
+           Logement.type_logement
+FROM Reservation, Etape, Activite, CircuitTouristique, Client, RessourceHumaine, Transporte, Logement
+WHERE RessourceHumaine.NSS = Client.NSS 
+      AND Reservation.client = Client.NSS 
+      AND Reservation.status = 'Payé'
+      AND Reservation.circuittouristique = CircuitTouristique.id 
+      AND Etape.circuit = CircuitTouristique.id 
+      AND Activite.etape = Etape.id
+      AND Transporte.etape = Etape.id
+      AND Logement.etape = Etape.id;
+
 INSERT INTO RessourceHumaine VALUES ('198072722924031','Leprat','Quentin','1998-07-01');
 INSERT INTO RessourceHumaine VALUES ('198074722520893','Durand','Antoine','2007-09-01');
 INSERT INTO RessourceHumaine VALUES ('598072452892409','Renard','Vincent','1998-08-05');
