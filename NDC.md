@@ -100,9 +100,7 @@ Une réservation a un prix, calculé en fonction de la période de l'année, un 
 ### Liste des fonctions que ces utilisateurs pourront effectuer
 
 * **Acompagnateur** : consulter son emploi du temps.
-* **Personnels** : peut consulter le planning d'un accompagnateur et le modifier, peuvent supprimer des reservations, 
-                   des clients, des étapes ou des activités pour un Circuit Touristique. Si un circuit n'est pas très
-*                  fréquenté, ils peuvent aussi supprimer ce circuit.
+* **Personnels** : peut consulter le planning d'un accompagnateur et le modifier, peuvent supprimer des reservations, des clients, des étapes ou des activités pour un Circuit Touristique. Si un circuit n'est pas très fréquenté, ils peuvent aussi supprimer ce circuit.
 * **Client** : peut seulement accéder à son profil et ses réservations.
 
 
