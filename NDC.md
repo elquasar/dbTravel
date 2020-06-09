@@ -124,3 +124,22 @@ Le choix s'est fait simplement en remarquant que l'héritage par classe mère n'
 pas du tout le même rôle dans l'agence, contrairement aux sociétés qui ont le rôle de *fournir quelque chose* aux circuits touristiques.
 De même l'héritage par classe fille n'était pas envisageable car il aurait fallu répéter tous les tuples de **Ressource Humaine** dans **Client** et **Personnel** et on perdrait donc 
 le côté *général* de la classe mère abstraite **RessourceHumaine**.
+
+
+# Implémentation des vues
+
+## Héritage par classe mère 
+
+Des vues SQL (vTransport,vSociete,vLogement) pour afficher et travailler sur les classes filles qui hérite de **Société**.
+
+## Statistiques sur l'agence
+
+Le client nous demande de pouvoir accès à quelques statistiques notamment : 
+
+*  Connaitre le nombre de réservation sur tous les circuits par mois.
+*  Connaitre le circuit le plus frequenté de l'année (ainsi que le moins fréquenté).
+*  Connaitre les types d'activités par âge des voyageurs.
+
+Des vues SQL seront donc mis en place : **vNombreReservation**, **vCircuitFamous**, **vActiviteAge** (respectivement à la liste ci-dessus)
+
+Une vue *bonus* SQL **vClient** permettant à l'agence de voir quel client à reservé tel circuit et quels sont les étapes qu'il va faire ainsi que les activités.
