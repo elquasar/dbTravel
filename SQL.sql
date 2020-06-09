@@ -24,6 +24,7 @@ CREATE TABLE Client (
         NSS text PRIMARY KEY,
         num_tel int,
         adresse text NOT NULL,
+        antecedent JSON,
         FOREIGN KEY (NSS) REFERENCES RessourceHumaine(NSS)
 );
 
@@ -44,8 +45,9 @@ CREATE TABLE CircuitTouristique (
         date_depart date NOT NULL,
         duree text,
         nb_max int NOT NULL,
-        description JSON,
-        difficulte int CHECK ((difficulte>=1) AND (difficulte<=5))
+        difficulte int CHECK ((difficulte>=1) AND (difficulte<=5)),
+        description JSON
+        
         
 );
 
@@ -193,13 +195,13 @@ INSERT INTO RessourceHumaine VALUES ('198074722520893','Durand','Antoine','2007-
 INSERT INTO RessourceHumaine VALUES ('598072452892409','Renard','Vincent','1998-08-05');
 
 
-INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la république');
-INSERT INTO Client VALUES ('598072452892409','0658785369','Rue des belles femmes');
+INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la république','{"Groupe sanguin" : "O+", "Maladie" : "asthme", "Allergie" : "Produit laitiers"}');
+INSERT INTO Client VALUES ('598072452892409','0658785369','Rue des belles femmes','{"Religion : " : "judaisme", "Régime alimentaire" : "viande sans porc","Allergie" : "acarien"}');
 INSERT INTO Personnel VALUES ('198072722924031','Charge d affaire','5000','Accompagnateur');
 
-INSERT INTO CircuitTouristique VALUES ('01','Aquatique','2020-05-30','7 jours','25',5,'{"Région" : "PACA", "Nom" : "Circuit DELTA", "Activités" : "Plongée sous marine"}');
-INSERT INTO CircuitTouristique VALUES ('02','Montagne','2020-02-12','15 jours','18',3,NULL);
-INSERT INTO CircuitTouristique VALUES ('03','Aviation','2020-07-30','7 jours','10',1,NULL);
+INSERT INTO CircuitTouristique VALUES ('01','Aquatique','2020-05-30','7 jours','25',5,'{"Région" : "PACA", "Nom" : "Circuit DELTA", "Activités pincipales" : "Plongée sous marine, Aquaponey, parc aquatique"}');
+INSERT INTO CircuitTouristique VALUES ('02','Montagne','2020-02-12','15 jours','18',3,'{"Région" : "Haute-savoie", "Nom" : "Circuit TANGO", "Activités pincipales" : "Ski, randonnée pedestre, Initiation aux remontées mécaniques"}');
+INSERT INTO CircuitTouristique VALUES ('03','Aviation','2020-07-30','7 jours','10',1,'{"Particularité" : "mystère"}');
 
 INSERT INTO Etape VALUES(1,'Fort des Salettes', 05,'Briançon','2020-02-12','2020-02-13',02);
 INSERT INTO Etape VALUES (2,'Fort Boyard',3,'Pertuis d antioche','2020-05-30','2020-06-04',1);
