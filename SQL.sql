@@ -191,9 +191,9 @@ WHERE RessourceHumaine.NSS = Client.NSS
 
 -- Insertion de quelques valeurs
 
-INSERT INTO RessourceHumaine VALUES ('198072722924031','Leprat','Quentin','1998-07-01',{"Adresse" : "18 rue de l'abbaye", "Ville" : "Ivry la Bataille", "Code postal" : "27540"});
-INSERT INTO RessourceHumaine VALUES ('198074722520893','Durand','Antoine','2007-09-01',NULL);
-INSERT INTO RessourceHumaine VALUES ('598072452892409','Renard','Vincent','1998-08-05',NULL);
+INSERT INTO RessourceHumaine VALUES ('198072722924031','Leprat','Quentin','1998-07-01','{"Adresse" : "18 rue de l abbaye", "Ville" : "Ivry la Bataille", "Code postal" : "27540"}');
+INSERT INTO RessourceHumaine VALUES ('198074722520893','Durand','Antoine','2007-09-01','{"Pays" : "Allemagne"}');
+INSERT INTO RessourceHumaine VALUES ('598072452892409','Renard','Vincent','1998-08-05','{"Ville" : "Paris", "Code postal": 75001}');
 
 
 INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la république','{"Groupe sanguin" : "O+", "Maladie" : "asthme", "Allergie" : "Produit laitiers"}');
