@@ -103,4 +103,24 @@ Une réservation a un prix, calculé en fonction de la période de l'année, un 
 * **Personnels** : peut consulter le planning d'un accompagnateur et le modifier, peuvent supprimer des reservations, des clients, des étapes ou des activités pour un Circuit Touristique. Si un circuit n'est pas très fréquenté, ils peuvent aussi supprimer ce circuit.
 * **Client** : peut seulement accéder à son profil et ses réservations.
 
+# Choix sur l'héritage
 
+Pour ce projet, il y aura 2 types d'héritages : l'*héritage par classe mère* et l'*héritage par référence*.
+
+## Héritage par la classe mère
+
+Après études des contraintes, l'héritage des classes **Transport**,**Logement** et **Location** par la classe **Societe** se fera par classe mère.
+
+En effet, les classes filles n'ont pas d'attributs permettant de les différenciés entre elles, la différenciation se fait uniquement sur la création de ces classes.
+Ainsi, un attribut dans la classe **Société** sera reservé pour désigné si c'est une société de **Transport**, une société de **Logement** (donc un hôtel ou une chambre d'hôte)
+ou encore une société de **Location** d'équipement.
+
+## Heritage par référence 
+
+L'héritage des classes **Personnel** et **Client** par la classe mère **RessourceHumaine** se fera par référence, un attribut sera ajouté dans chacune de ces classes pour faire référence
+aux tuples de la classe mère **Ressource Humaine**. 
+
+Le choix s'est fait simplement en remarquant que l'héritage par classe mère n'était pas judicieux car les deux classes filles possède beaucoup d'attributs qui différent, et n'ont en réalité, 
+pas du tout le même rôle dans l'agence, contrairement aux sociétés qui ont le rôle de *fournir quelque chose* aux circuits touristiques.
+De même l'héritage par classe fille n'était pas envisageable car il aurait fallu répéter tous les tuples de **Ressource Humaine** dans **Client** et **Personnel** et on perdrait donc 
+le côté *général* de la classe mère abstraite **RessourceHumaine**.
