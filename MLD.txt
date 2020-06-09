@@ -1,11 +1,11 @@
-RessourceHumaine(#NSS : int, nom : string, prenom : string, date_naissance : date)
+RessourceHumaine(#NSS : int, nom : string, prenom : string, date_naissance : date, adresse : json)
 
 Personnel(#Personne => RessourceHumaine : int, poste : string, salaire : decimal, t : {1 | 2}) avec t NOT NULL
 
 // Si t = 1 alors c'est un personnel, si t = 2 c'est un accompagnateur
 // On peut supposer que tout membre du Personnel de l'agence doit pouvoir accès à son emploi du temps
 
-Client(#NSS => RessourceHumaine : int, adresse : string)
+Client(#NSS => RessourceHumaine : int, adresse : string, antecedent : json)
 
 
 Societe(#SIREN : int, 
@@ -46,7 +46,9 @@ CircuitTouristique(#id : int,
                    duree : string, 
                    nb_max : int, 
                    accompagnateur => accompagnateur.nom : string
-                   difficulte : {1|2|3|4|5}
+                   difficulte : {1|2|3|4|5},
+                   description : json
+                   
                    )
 
                    
