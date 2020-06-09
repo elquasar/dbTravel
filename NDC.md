@@ -105,7 +105,7 @@ Une réservation a un prix, calculé en fonction de la période de l'année, un 
 
 # Choix sur l'héritage
 
-Pour ce projet, il y aura 2 types d'héritages : l'*héritage par classe mère* et l'*héritage par référence*.
+Pour ce projet, il y aura 2 types d'héritages : l'**héritage par classe mère** et l'**héritage par référence**.
 
 ## Héritage par la classe mère
 
