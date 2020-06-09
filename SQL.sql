@@ -44,6 +44,7 @@ CREATE TABLE CircuitTouristique (
         date_depart date NOT NULL,
         duree text,
         nb_max int NOT NULL,
+        description JSON,
         difficulte int CHECK ((difficulte>=1) AND (difficulte<=5))
         
 );
@@ -196,9 +197,9 @@ INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la répu
 INSERT INTO Client VALUES ('598072452892409','0658785369','Rue des belles femmes');
 INSERT INTO Personnel VALUES ('198072722924031','Charge d affaire','5000','Accompagnateur');
 
-INSERT INTO CircuitTouristique VALUES ('01','Aquatique','2020-05-30','7 jours','25',5);
-INSERT INTO CircuitTouristique VALUES ('02','Montagne','2020-02-12','15 jours','18',3);
-INSERT INTO CircuitTouristique VALUES ('03','Aviation','2020-07-30','7 jours','10',1);
+INSERT INTO CircuitTouristique VALUES ('01','Aquatique','2020-05-30','7 jours','25',5,'{"Région" : "PACA", "Nom" : "Circuit DELTA", "Activités" : "Plongée sous marine"}');
+INSERT INTO CircuitTouristique VALUES ('02','Montagne','2020-02-12','15 jours','18',3,NULL);
+INSERT INTO CircuitTouristique VALUES ('03','Aviation','2020-07-30','7 jours','10',1,NULL);
 
 INSERT INTO Etape VALUES(1,'Fort des Salettes', 05,'Briançon','2020-02-12','2020-02-13',02);
 INSERT INTO Etape VALUES (2,'Fort Boyard',3,'Pertuis d antioche','2020-05-30','2020-06-04',1);
