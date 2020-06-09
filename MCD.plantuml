@@ -14,10 +14,11 @@ package "Membre de l'agence" {
   class Personnel {
     poste : string
     salaire : real
+    void emploidutemps()
 
   }
   class Accompagnateur {
-    void emploidutemps()
+    
   }
 
   RessourceHumaine <|-- Personnel
