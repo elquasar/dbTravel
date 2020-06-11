@@ -189,6 +189,27 @@ WHERE RessourceHumaine.NSS = Client.NSS
       AND Logement.etape = Etape.id;
 
 
+-- Vue pour afficher la description des Circuits Touristiques
+
+CREATE VIEW vCircuitTouristique AS SELECT
+        d.*
+        FROM CircuitTouristique c, JSON_TO_RECORDSET(description) d (Nom TEXT, Région TEXT, Activités_principales TEXT);
+-- Vue pour afficher les antécédents des clients
+
+CREATE VIEW vTotalClient AS SELECT
+        r.nom, 
+        ad ->> 'Adresse' AS adresse,
+        ad ->> 'Ville' AS ville,
+        ad ->> 'Code postal' AS cp,
+        a  ->> 'Maladie' AS maladie,
+        a  ->> 'Allergie' AS allergie,
+        a  ->> 'Régime alimentaire' AS régime_alimentaire
+        FROM RessourceHumaine r, 
+             Client c ,
+             JSON_ARRAY_ELEMENTS(c.antecedent) a,
+             JSON_ARRAY_ELEMENTS(r.adresse) ad
+        WHERE c.NSS = r.NSS;
+
 -- Insertion de quelques valeurs 
 
 INSERT INTO RessourceHumaine VALUES ('198072722924031','Leprat','Quentin','1998-07-01','{"Adresse" : "18 rue de l abbaye", "Ville" : "Ivry la Bataille", "Code postal" : "27540"}');
@@ -196,7 +217,7 @@ INSERT INTO RessourceHumaine VALUES ('198074722520893','Durand','Antoine','2007-
 INSERT INTO RessourceHumaine VALUES ('598072452892409','Renard','Vincent','1998-08-05','{"Adresse" : " 5 Rue des Rosiers","Ville" : " Verneuil-l Étang", "Code postal" : "77390"}');
 
 
-INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la république','{"Maladie" : "asthme", "Allergie" : "Produit laitiers", "Régime alimentaire" : ""}');
+INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la république','{"Maladie" : "asthme", "Allergie" : "Produit laitiers"}');
 INSERT INTO Client VALUES ('598072452892409','0658785369','Rue des belles femmes','{"Maladie" : "", "Allergie" : "Acarien", "Régime alimentaire" : "viande sans porc"}');
 INSERT INTO Personnel VALUES ('198072722924031','Charge d affaire','5000','Accompagnateur');
 
