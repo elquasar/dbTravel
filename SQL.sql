@@ -189,20 +189,20 @@ WHERE RessourceHumaine.NSS = Client.NSS
       AND Logement.etape = Etape.id;
 
 
--- Insertion de quelques valeurs
+-- Insertion de quelques valeurs 
 
 INSERT INTO RessourceHumaine VALUES ('198072722924031','Leprat','Quentin','1998-07-01','{"Adresse" : "18 rue de l abbaye", "Ville" : "Ivry la Bataille", "Code postal" : "27540"}');
-INSERT INTO RessourceHumaine VALUES ('198074722520893','Durand','Antoine','2007-09-01','{"Pays" : "Allemagne"}');
-INSERT INTO RessourceHumaine VALUES ('598072452892409','Renard','Vincent','1998-08-05','{"Ville" : "Paris", "Code postal": 75001}');
+INSERT INTO RessourceHumaine VALUES ('198074722520893','Durand','Antoine','2007-09-01','{"Adresse" : "44 Rue Henry Litolff","Ville" : "Colombes", "Code postal" : "92270"}');
+INSERT INTO RessourceHumaine VALUES ('598072452892409','Renard','Vincent','1998-08-05','{"Adresse" : " 5 Rue des Rosiers","Ville" : " Verneuil-l Étang", "Code postal" : "77390"}');
 
 
-INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la république','{"Groupe sanguin" : "O+", "Maladie" : "asthme", "Allergie" : "Produit laitiers"}');
-INSERT INTO Client VALUES ('598072452892409','0658785369','Rue des belles femmes','{"Religion : " : "judaisme", "Régime alimentaire" : "viande sans porc","Allergie" : "acarien"}');
+INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la république','{"Maladie" : "asthme", "Allergie" : "Produit laitiers", "Régime alimentaire" : ""}');
+INSERT INTO Client VALUES ('598072452892409','0658785369','Rue des belles femmes','{"Maladie" : "", "Allergie" : "Acarien", "Régime alimentaire" : "viande sans porc"}');
 INSERT INTO Personnel VALUES ('198072722924031','Charge d affaire','5000','Accompagnateur');
 
 INSERT INTO CircuitTouristique VALUES ('01','Aquatique','2020-05-30','7 jours','25',5,'{"Région" : "PACA", "Nom" : "Circuit DELTA", "Activités pincipales" : "Plongée sous marine, Aquaponey, parc aquatique"}');
 INSERT INTO CircuitTouristique VALUES ('02','Montagne','2020-02-12','15 jours','18',3,'{"Région" : "Haute-savoie", "Nom" : "Circuit TANGO", "Activités pincipales" : "Ski, randonnée pedestre, Initiation aux remontées mécaniques"}');
-INSERT INTO CircuitTouristique VALUES ('03','Aviation','2020-07-30','7 jours','10',1,'{"Particularité" : "mystère"}');
+INSERT INTO CircuitTouristique VALUES ('03','Aviation','2020-07-30','7 jours','10',1,NULL);
 
 INSERT INTO Etape VALUES(1,'Fort des Salettes', 05,'Briançon','2020-02-12','2020-02-13',02);
 INSERT INTO Etape VALUES (2,'Fort Boyard',3,'Pertuis d antioche','2020-05-30','2020-06-04',1);
