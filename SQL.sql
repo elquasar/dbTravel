@@ -192,11 +192,15 @@ WHERE RessourceHumaine.NSS = Client.NSS
 -- Vue pour afficher la description des Circuits Touristiques
 
 CREATE VIEW vCircuitTouristique AS SELECT
-        d.*
-        FROM CircuitTouristique c, JSON_TO_RECORDSET(description) d (Nom TEXT, Région TEXT, Activités_principales TEXT);
--- Vue pour afficher les antécédents des clients
+        d->>'Région' AS Région,        
+        d->>'Nom' AS Nom,
+        d->>'Activités principales' AS Activités_principales
+        FROM CircuitTouristique c, JSON_ARRAY_ELEMENTS(c.description) d;
 
-CREATE VIEW vTotalClient AS SELECT
+
+-- Vue pour afficher les antécédents des clients ainsi que leurs adresses
+
+CREATE VIEW vAntecedent_adresse AS SELECT
         r.nom, 
         ad ->> 'Adresse' AS adresse,
         ad ->> 'Ville' AS ville,
