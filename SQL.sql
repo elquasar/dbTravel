@@ -192,9 +192,10 @@ WHERE RessourceHumaine.NSS = Client.NSS
 -- Vue pour afficher la description des Circuits Touristiques
 
 CREATE VIEW vCircuitTouristique AS SELECT
+        c.type_circuit,
         d->>'Région' AS Région,        
         d->>'Nom' AS Nom,
-        d->>'Activités principales' AS Activités_principales
+        d->>'Activités' AS Activites
         FROM CircuitTouristique c, JSON_ARRAY_ELEMENTS(c.description) d;
 
 
@@ -225,8 +226,8 @@ INSERT INTO Client VALUES ('198074722520893','0689784565','Boulevard de la répu
 INSERT INTO Client VALUES ('598072452892409','0658785369','Rue des belles femmes','[{"Maladie" : "", "Allergie" : "Acarien", "Régime alimentaire" : "viande sans porc"}]');
 INSERT INTO Personnel VALUES ('198072722924031','Charge d affaire','5000','Accompagnateur');
 
-INSERT INTO CircuitTouristique VALUES ('01','Aquatique','2020-05-30','7 jours','25',5,'[{"Région" : "PACA", "Nom" : "Circuit DELTA", "Activités pincipales" : "Plongée sous marine, Aquaponey, parc aquatique"}]');
-INSERT INTO CircuitTouristique VALUES ('02','Montagne','2020-02-12','15 jours','18',3,'[{"Région" : "Haute-savoie", "Nom" : "Circuit TANGO", "Activités pincipales" : "Ski, randonnée pedestre, Initiation aux remontées mécaniques"}]');
+INSERT INTO CircuitTouristique VALUES ('01','Aquatique','2020-05-30','7 jours','25',5,'[{"Région" : "PACA", "Nom" : "Circuit DELTA", "Activités" : "[Plongée sous marine, Aquaponey, parc aquatique]"}]');
+INSERT INTO CircuitTouristique VALUES ('02','Montagne','2020-02-12','15 jours','18',3,'[{"Région" : "Haute-savoie", "Nom" : "Circuit TANGO", "Activités" : "[Ski, randonnée pedestre, Initiation aux remontées mécaniques]"}]');
 INSERT INTO CircuitTouristique VALUES ('03','Aviation','2020-07-30','7 jours','10',1,NULL);
 
 INSERT INTO Etape VALUES(1,'Fort des Salettes', 05,'Briançon','2020-02-12','2020-02-13',02);
