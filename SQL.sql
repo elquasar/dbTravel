@@ -264,9 +264,11 @@ INSERT INTO Notation VALUES(1,198074722520893,3,8,'Un circuit incroyable');
 
 
 -- Gestion des droits (ne fonctionne aps sur les serveurs de l'UTC)
-
+ -- CREATE ROLE Administrateur;
  -- CREATE ROLE Membre_agence;
  -- CREATE ROLE Client; 
-
--- GRANT ALL PRIVILEGES TO Membre_agence; 
--- GRANT INSERT ON Client, Resveration TO Client;
+ -- CREATE ROLE Directeur;
+  -- GRANT ALL PRIVILEGES TO Administrateur; 
+  -- GRANT SELECT,INSERT,DELETE TO Directeur;
+  -- GRANT SELECT,INSERT TO Membre_agence;
+  -- GRANT INSERT ON Client, Reservation TO Client;
