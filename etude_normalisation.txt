@@ -1,0 +1,131 @@
+
+NORMALISATION : 
+
+
+Les relations suivantes sont déjà en 3NF : Activite,Etape,CircuitTouristique,Societe,Client,RessourceHumaine,Reservation,Notation.
+
+
+Mise sous 3NF de Personnel : 
+
+Personnel(#Personne => RessourceHumaine, poste, salaire, t)
+
+- personnel est en 2NF, mais comme le (poste) --> (salaire), elle n'est pas en 3NF.
+
+- la forme 3NF est donc :
+
+Personnel(#Personne => RessourceHumaine, Poste => Poste,t})
+
+Poste(#Poste,salaire)
+
+
+Mise sous 3NF de transporte
+
+transporte(#Societe => Transporteur.SIREN : int, 
+           #Etape_id => Etape.id, 
+           prix_par_personne : decimal, 
+           type : {avion,bus,bateau}
+           )
+
+ - transporte est déjà en 2NF car les deux clés déterminent toutes les deux tous les attributs non clés
+   et aucune partie de la clé permet de déterminer des attributs non clé.
+    
+    (Societe,Etape_id) --> (prix_par_personne)
+    (Societe,Etape_id) --> (type)
+    
+    donc par transitivité  : 
+    
+    (Societe,Etape_id) --> (type,prix_par_personne)
+    
+    On pourrait penser que seule la société détermine le prix, mais cela dépend en réalité aussi  de l'étape,
+    en effet, si une étape nécessite la location d'un bus, cela coutera moins cher qu'une étape qui nécessite 
+    une place d'avion.
+    
+    Cependant, on remarque rapidement que la table n'est pas 3NF car le type de transport détermine le prix.
+    
+    (type) --> (prix_par_personne)  (si c'est un avion c'est plus cher que le bus)
+
+
+
+- la forme 3NF est donc : 
+
+transporte(#Societe => Transporteur.SIREN, 
+           #Etape_id => Etape.id, 
+           Type_transport => Type
+           )
+           
+Type (#Type_transport : {avion,bus,bateau} , prix_par_personne : decimal)
+
+Mise sous 3NF de logement
+
+- c'est la même chose que transporte, le  type de logement va déterminer le prix : 
+    
+    (type_logemnt) -- > (prix_par_personne) 
+
+- la forme 3NF est donc : 
+
+logement (#Societe => Hebergeur.SIREN, 
+          #Etape_id => Etape.id, 
+          type_logement => Type_logement 
+          ) 
+Type_logement(#type_logement : {chambre_hote, hotel}, prix_par_personne)
+         
+
+Mise sous 2NF et 3NF de location 
+
+location (#Societe => Equipementier.SIREN : int,
+          #Activite => Activite.id : int, 
+          type_equipement : string,
+          usure  : {Neuf | très bon | bon |moyen | inutilisable},
+          prix_equipement : decimal
+         )
+
+On remarque que : 
+
+    (Societe,Activite) --> (type_equipement, usure, prix_equipement)
+    (Activite) --> (type_equipement)
+
+- la forme 2NF est donc :
+
+location (#Societe => Societe_type
+          #Activite => Activite_type, 
+         )
+
+On regroupe donc ce qui est déterminé par l'activité dans une table Activit_type et ce qui concerne la societe dans une 
+table societe type.
+
+
+Activite_type(#Activite => Activite.id , type_equipement : string) (3NF)
+
+Societe_type (#Societe.id =>Equipementier.SIREN, usure  : {Neuf | très bon | bon |moyen | inutilisable},
+          prix_equipement) (2NF)
+
+On obtient donc 2 tables et on remarque tout de suite que la table Activite_type est 3NF, mais que societe_type ne l'est pas.
+
+          
+Dans la table societe_type, on voit facilement que l'usure détermine sans nul doute le prix de l'équipement : 
+
+    (usure) --> (prix_equipement)
+
+Il faut donc mettre cette table en 3NF : 
+
+
+Societe_type (#Societe.id =>Equipementier.SIREN,
+          Equipement_type => Equipement_type)
+
+Equipement_type(#usure,prix_equipement)
+
+
+Ainsi on obtient en résumé 4 tables qui sont toutes 3NF : 
+
+location (#Societe => Societe_type
+          #Activite => Activite_type, 
+         )
+         
+Activite_type(#Activite => Activite.id,type_equipement)
+
+Societe_type (#Societe.id =>Equipementier.SIREN,
+          Equipement_type => Equipement_type)
+
+Equipement_type(#usure,prix_equipement)
+
+
